@@ -75,7 +75,7 @@ function addStep(id) {
  * @param {number} id L'identifiant de l'étape concernée
  */
 function deleteStep(id) {
-    if (!confirm("Êtes-vous sûrs de vouloir supprimer cette étape ?")) return false;
+    if (!confirm("Êtes-vous sûr de vouloir supprimer cette étape ?")) return false;
 	/* requête AJAX */
     $.ajax({
         type: "POST",
