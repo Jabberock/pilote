@@ -1,0 +1,231 @@
+{#
+
+Copyright (C) 2017 Mathieu Boutolleau
+
+--------------------------------
+
+This file is part of Pilote.
+
+    Pilote is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Pilote is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Pilote.  If not, see <http://www.gnu.org/licenses/>.
+
+#}
+
+{# Page du tableau de bord d'un Projet #}
+
+{% extends 'PiloteMainBundle::base.html.twig' %}
+
+{# Ceci est le bloc qui remplace le titre de la page (normalement dans le <head>) #}
+{% block pageTitle %} {{ parent() }} - {{ board }} - Tableau de bord du projet {% endblock %}
+
+{# Ceci est le bloc qui remplace le bloc identique de la vue dont cette vue hérite #}
+{% block boardTitle %} {{ board is defined ? board : app.user }} {% endblock %}
+
+{# Bloc principal #}
+{% block body %}
+
+    <div class = "container">
+
+        <div class = "page-header">
+            <h1>Avancement du projet</h1>
+        </div>
+
+        <div class = "row">
+
+            <div class="well" style="background-color: white">
+                <h3 class="text-left">
+                {% if progressArray['general'] is not null and progressArray['general'] >= 0 %}
+                    <a data-toggle="collapse" href="#details-progress">Avancement moyen des tâches</a>&nbsp;
+                    {# Affichage du pourcentage d'avancement général #}
+                    <span class="label label-primary">{{ progressArray['general'] }}&nbsp;%</span>
+                {% else %}
+                    Avancement moyen des tâches
+                    <span class="label label-primary">Pas de données</span>
+                {% endif %}
+                </h3>
+
+                {# Si nous avons au moins une tâche avec une date de fin définie #}
+                {% if progressArray['general'] is not null %}
+                <div id="details-progress" class="collapse">
+                    <h4>Avancement moyen des tâches par domaine</h4>
+
+                    {% for domain in board.getDomains() %} {# pour chaque domaine #}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">{{ domain.name }}</div>
+                            <div class="panel-body">
+                                <ul>
+                                {% for step in domain.getSteps() %} {# pour chaque étape #}
+                                    <li>{{ step.name }}&nbsp;<span class="label label-info">
+                                        {% if progressArray[domain.name][step.name] > 0 %}
+                                            {# Si nous avons un pourcentage d'avancement pour l'étape, on l'affiche #}
+                                            {{ progressArray[domain.name][step.name] }}&nbsp;%
+                                        {% else %}
+                                            Pas de données
+                                        {% endif %}
+                                        </span></li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+
+                <h3>
+                {% if endDateArray['project']  is not null %}
+                    <a data-toggle="collapse" href="#details-end-date">Date de fin</a>&nbsp;
+                    <span class="label label-primary">
+                    {# Affichage de la date de fin du projet, au format JJ/MM/AAAA #}
+                    {{ endDateArray['project']|date('d/m/Y', timezone="Europe/Paris") }}
+                    </span>
+                {% else %}
+                    Date de fin
+                    <span class="label label-primary">Pas de données</span>
+                {% endif %}
+                </h3>
+
+                {% if endDateArray['project']  is not null %}
+                <div id="details-end-date" class="collapse">
+                    <h4>Date de fin par domaine</h4>
+
+                    {% for domain in board.getDomains() %} {# pour chaque domaine #}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">{{ domain.name }}</div>
+                            <div class="panel-body">
+                                <ul>
+                                {% for step in domain.getSteps() %} {# pour chaque étape #}
+                                    <li>{{ step.name }}&nbsp;<span class="label label-info">
+                                        {% if endDateArray[domain.name][step.name] != null %}
+                                            {# Si nous avons une date de fin valide pour l'étape, affichage au format JJ/MM/AAAA #}
+                                            {{ endDateArray[domain.name][step.name]|date('d/m/Y', timezone="Europe/Paris") }}
+                                        {% else %}
+                                            Pas de données
+                                        {% endif %}
+                                        </span></li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="well" style="background-color: white">
+                <h3>
+                    Prochaines échéances
+                    {# Si nous n'avons pas de tâches avec une date de fin définie #}
+                    {% if deadlinesArray is empty %}
+                        <span class="label label-primary">Pas de données</span>
+                    {% endif %}
+                </h3>
+
+                {# Si nous avons au moins une tâche avec une date de fin définie #}
+                {% if deadlinesArray is not empty %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Tâche</th>
+                            <th>Date de fin</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {# Pour les trois prochaines échéances #}
+                        {% for task in deadlinesArray %}
+                            {# Si la date de fin de la tâche est après la date d'aujourd'hui #}
+                            {% if task.endDate|date("U") > "now"|date("U") %}
+                                <tr>
+                                    <td>{{ task.name }}</td>
+                                    <td>
+                                    {# Si la date de fin de la tâche est dans moins de 7 jours, on l'affiche en rouge #}
+                                    {% if task.endDate|date("U") < "+7 days"|date("U") %}
+                                        {% set labelType = "label label-danger" %}
+                                    {# Si la date de fin de la tâche est dans moins de 14 jours, on l'affiche en orange #}
+                                    {% elseif task.endDate|date("U") < "+14 days"|date("U") %}
+                                        {% set labelType = "label label-warning" %}
+                                    {# Si la date de fin de la tâche est dans plus de 14 jours, on l'affiche en vert #}
+                                    {% else %}
+                                        {% set labelType = "label label-success" %}
+                                    {% endif %}
+                                    <span class="{{ labelType }}">
+                                        {# La date de fin de la tâche est affichée au format JJ/MM/AAAA #}
+                                        {{ task.endDate|date('d/m/Y', timezone="Europe/Paris") }}
+                                    </span>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="well" style="background-color: white">
+                <h3>
+                    Tâches en retard
+                    {# Si nous n'avons pas de tâches en retard #}
+                    {% if overdueArray is empty %}
+                        <span class="label label-success">0 tâche</span>
+                    {# Si nous avons 1 seule tâche en retard #}
+                    {% elseif overdueArray|length == 1 %}
+                        <span class="label label-warning">1 tâche</span>
+                    {# Si nous avons entre 1 et 5 tâches en retard #}
+                    {% elseif overdueArray|length < 5 %}
+                        <span class="label label-warning">{{ overdueArray|length }} tâches</span>
+                    {# Si nous avons plus de 5 tâches en retard #}
+                    {% else %}
+                        <span class="label label-danger">{{ overdueArray|length }} tâches</span>
+                    {% endif %}
+                </h3>
+
+                {# Si nous avons au moins une tâche en retard #}
+                {% if overdueArray is not empty %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Tâche</th>
+                            <th>Indicateur</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {# Pour chaque tâche en retard #}
+                        {% for taskName, overdue in overdueArray %}
+                        <tr>
+                            <td>{{ taskName }}</td>
+                            {# La tâche a une date de fin qui est passée son retard est le % de travail qu'il reste à faire
+                            (exprimé par un nombre négatif, sa valeur absolue est gardée) #}
+                            {% if overdue|abs <= 33 %}
+                                <td> <span class="label label-warning">{{ overdue|abs }}&nbsp;%</span> de travail encore à faire </td>
+                            {% elseif overdue|abs <= 100 %}
+                                <td> <span class="label label-danger">{{ overdue|abs }}&nbsp;%</span> de travail encore à faire </td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
