@@ -86,7 +86,7 @@ class Notification
     private $sender;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Pilote\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="Pilote\UserBundle\Entity\User", inversedBy="notifications")
      * @ORM\JoinColumn(name="receiver_id", referencedColumnName="id", nullable=true)
      */
     protected $receiver;
