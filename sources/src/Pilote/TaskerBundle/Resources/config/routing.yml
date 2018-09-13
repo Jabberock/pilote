@@ -53,6 +53,17 @@ pilote_tasker_board_delete:
     requirements:
         boardId: \d+
 
+#####################
+# PROJECT DASHBOARD #
+#####################
+
+# Page du tableau de bord d'un projet
+pilote_tasker_project_dashboard:
+    path: /board/{boardId}/project-dashboard/
+    defaults: { _controller: PiloteTaskerBundle:ProjectDashboard:printProjectdashboard }
+    requirements:
+        boardId: \d+
+
 #########
 # GANTT #
 #########
@@ -68,8 +79,6 @@ pilote_tasker_gantt:
 pilote_tasker_gantt_user:
     path: /board/user/gantt
     defaults: { _controller: PiloteTaskerBundle:Gantt:userGantt }
-
-
 
 ##############
 # CALENDRIER #
