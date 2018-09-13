@@ -96,7 +96,7 @@ function setChecklistTitle(id){
 }
 
 function deleteChecklist(id) {
-    if (!confirm("Êtes-vous sûrs de vouloir supprimer cette liste ?")) return false;
+    if (!confirm("Êtes-vous sûr de vouloir supprimer cette liste ?")) return false;
     $.ajax({
     /* requête AJAX */
         type: "POST",

@@ -14,7 +14,7 @@ Il est le résultat de deux projets d'études à l'École d'Ingénieurs [Polytec
 
 Les utilisateurs ont la possibilité de créer des projets et d'inviter d'autres utilisateurs à le rejoindre.
 
-<!-- index-1 --> 
+<!-- index-1 -->
 <p align="center">
     <img src="doc/images/index-1.png">
 </p>
@@ -22,7 +22,7 @@ Les utilisateurs ont la possibilité de créer des projets et d'inviter d'autres
 
 #### Affichage des tâches en listes (méthode Kanban)
 
-Dans chaque projet, une interface simple permet de créer des tâches et des listes de tâches, et de les regrouper dans des étapes et dans des domaines plus généraux. Un simple glisser-déposer suffit à les réorganiser. Pour ce projet de conception de drônes par exemple, le domaine _Mécanique_ contiendra les étapes _Conception_, _Assemblages_ et _Tests de fiabilité_ alors que le domaine _Informatique_ aura plutôt les étapes _Étude de l'existant_, _Développement_ et _Tests_. Ainsi les différents corps de métier qui composent un projet complexe sont regroupés au sein du même outil.
+Dans chaque projet, une interface simple permet de créer des tâches et des listes de tâches, et de les regrouper dans des étapes et dans des domaines plus généraux. Un simple glisser-déposer suffit à les réorganiser. Pour ce projet de conception de drones par exemple, le domaine _Mécanique_ contiendra les étapes _Conception_, _Assemblages_ et _Tests de fiabilité_ alors que le domaine _Informatique_ aura plutôt les étapes _Étude de l'existant_, _Développement_ et _Tests_. Ainsi les différents corps de métier qui composent un projet complexe sont regroupés au sein du même outil.
 
 <!-- index-2 --> 
 <p align="center">

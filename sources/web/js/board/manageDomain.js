@@ -74,7 +74,7 @@ function deleteDomain(id) {
     	alert("Le board doit contenir au moins un domaine.");
     	return false;
     };
-    if (!confirm("Êtes-vous sûrs de vouloir supprimer ce domaine ?")) return false;
+    if (!confirm("Êtes-vous sûr de vouloir supprimer ce domaine ?")) return false;
 	/* Requête AJAX */
     $.ajax({
         type: "POST",

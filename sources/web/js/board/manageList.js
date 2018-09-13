@@ -67,7 +67,7 @@ function addList(id) {
  * @param {number} id L'identifiant de la liste concernée
  */
 function deleteList(id) {
-    if (!confirm("Êtes-vous sûrs de vouloir supprimer cette liste de tâches ?")) return false;
+    if (!confirm("Êtes-vous sûr de vouloir supprimer cette liste de tâches ?")) return false;
     $.ajax({
         type: "POST",
         dataType:"json",

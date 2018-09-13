@@ -221,7 +221,7 @@ class TaskerController extends Controller
      * @return boolean         VRAI si l'utisateur a accès à ce
      * projet, faux sinon.
      */
-    private function AccessGranted($board)
+    protected function AccessGranted($board)
     {
         if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
             return true;
@@ -233,7 +233,7 @@ class TaskerController extends Controller
     }
 
     /**
-     * Fonction utilitaire recherhant dans l'EntityManager une entity en
+     * Fonction utilitaire recherchant dans l'EntityManager une entity en
      * fonction de son Bundle, sa classe et son identifiant. Si l'entité
      * n'est pas trouvée, une exception est lancée avec un message d'erreur
      * personnalisé. En production, cela résulte en une page d'erreur 404.
@@ -242,9 +242,9 @@ class TaskerController extends Controller
      * @param  string $bundle Le bundle souhaité (ex : "PiloteTaskerBundle")
      * @param  string $class  La classe de l'entité recherchée (ex : "Board")
      * @param  int $id        L'identifiant de l'entité recherchée
-     * @return Object         Entitée recherchée, si elle existe.
+     * @return Object         Entité recherchée, si elle existe.
      */
-    private function findOr404($em, $bundle, $class, $id)
+    protected function findOr404($em, $bundle, $class, $id)
     {
         $entity = $em->getRepository($bundle.':'.$class)->find($id);
         if ($entity==null) {

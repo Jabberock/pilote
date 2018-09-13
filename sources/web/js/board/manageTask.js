@@ -203,7 +203,7 @@ function setTaskTitle(id){
  * @param {number} id L'identifiant de la tâche concernée
  */
 function deleteTask(id) {
-    if (!confirm("Êtes-vous sûrs de vouloir supprimer cette tâche ?")) return false;
+    if (!confirm("Êtes-vous sûr de vouloir supprimer cette tâche ?")) return false;
 	/* requête AJAX */
     $.ajax({
         type: "POST",
