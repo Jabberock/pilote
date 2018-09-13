@@ -1,28 +1,27 @@
-<!--
-
-Copyright (C) 2015 Hamza Ayoub, Valentin Chareyre, Sofian Hamou-Mamar, 
-Alain Krok, Wenlong Li, Rémi Patrizio, Yamine Zaidou
-
-________________________________
-
-This file is part of Pilote.
-
-    Pilote is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    Pilote is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with Pilote.  If not, see <http://www.gnu.org/licenses/>.
-
--->
-
 <?php
+
+/*
+ * Copyright (C) 2015 Hamza Ayoub, Valentin Chareyre, Sofian Hamou-Mamar,
+ * Alain Krok, Wenlong Li, Rémi Patrizio, Yamine Zaidou
+ * Copyright (C) 2017 Mathieu Boutolleau
+ *
+ * ________________________________
+ *
+ * This file is part of Pilote.
+ *
+ * Pilote is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Pilote is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Pilote.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 namespace Pilote\TaskerBundle\Entity;
 
@@ -176,7 +175,7 @@ class Task
     private $targetLinks;
 
     /**
-     * @ORM\OneToOne(targetEntity="Pilote\TaskerBundle\Entity\Document")
+     * @ORM\OneToOne(targetEntity="Pilote\TaskerBundle\Entity\Document", inversedBy="task")
      * @ORM\JoinColumn(name="document_id", referencedColumnName="id")
      */
     private $document;
@@ -364,6 +363,19 @@ class Task
         return self::$labelsList;
     }
 
+    /**
+     * Retourne une étiquette dans la liste des étiquettes en la recherchant par son texte
+     * @param $labelText string le nom de l'étiquette
+     * @return array l'étiquette correspondante au texte cherché ou null
+     */
+    public static function getLabelFromListByText($labelText) {
+        foreach (self::$labelsList as $label) {
+            if ($label["text"] == $labelText) {
+                return $label;
+            }
+        }
+        return null;
+    }
 
     /**
      * Set document
