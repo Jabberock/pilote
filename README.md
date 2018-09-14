@@ -1,5 +1,13 @@
 # Pilote
 
+## Status
+
+[EN] **Warning** : Pilote is a dormant project, no work is planned on it.
+
+[FR] **Attention** : Pilote est projet dormant, aucun travail n'est prévu dessus.
+
+----
+
 ## Outils de gestion collaborative de projets
 
 Pilote est une application web Open Source, sous licence GNU GPL v3, développée en **PHP** (_Symfony2_) et en **Javascript** (_jQuery_ et _Node.Js_) permettant de faciliter la gestion d'un grand nombre de projets de groupes et d'utilisateurs.
