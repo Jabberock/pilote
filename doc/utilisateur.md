@@ -1,11 +1,11 @@
-# Aide à l'utilisateur
+# Manuel utilisateur
 
-Pour commencer, sachez qu'aucune page n'est accessible aux utilisateurs non connectés. Commencez donc par vous inscrire ou vous connecter.
+Pour commencer, sachez qu'aucune page n'est accessible aux utilisateurs non connectés. Commencez donc par vous inscrire (bouton `S'enregistrer`) ou vous connecter (bouton `Connexion`).
 
-<!-- user-1 --> 
-<!--<p align="center">
+<!-- user-1 -->
+<p align="center">
     <img src="images/user-1.png">
-</p>-->
+</p>
 
 ----
 
@@ -15,7 +15,7 @@ Sur la page d'accueil, créez un nouveau projet. Saisissez un nom et une rapide 
 
 Vous arrivez sur cette page :
 
-<!-- user-2 --> 
+<!-- user-2 -->
 <p align="center">
     <img src="images/user-2.png">
 </p>
@@ -30,7 +30,7 @@ Ces onglets sont eux-mêmes regroupés dans un __corps de métier__. Vous pouvez
 
 Les tâches sont __réagençables__, vous pouvez les glisser-déposer au sein d'une liste, ou bien d'une liste à un autre. De même, les listes sont déplaçables au sein d'un onglet.
 
-<!-- user-3 --> 
+<!-- user-3 -->
 <p align="center">
     <img src="images/user-3.png">
 </p>
@@ -41,7 +41,7 @@ Les tâches sont __réagençables__, vous pouvez les glisser-déposer au sein d'
 
 En cliquant sur une tâche, la fenêtre de détail et d'édition de la tâche s'ouvre. Cliquez sur la zone centrale pour éditer la description détaillée, comme sur la capture d'écran suivante :
 
-<!-- user-4 et user-5 --> 
+<!-- user-4 et user-5 -->
 <p align="center">
     <img src="images/user-4.png" width="300">
     <img src="images/user-5.png" width="300">
@@ -52,38 +52,75 @@ Vous pouvez ajouter plusieurs éléments à une tâche :
 - Un label de __priorité__ : _Haute priorité_, _Priorité basse_, _En retard_, _Fait_, etc
 - __Associer une personne__ à cette tâche : Ainsi dans le diagramme de Gantt, il est possible de filtrer les tâches par personne. De plus, l'utilisateur retrouve ses propres tâches, regroupées par projets, sur sa page de profil.
 - Des __listes de cases à cocher__ : vous pouvez en ajouter plusieurs pour chaque tâche
-- Des __dates de début et de fin__ : Si seule la date de fin est renseignée, la tâche apparaitra sous forme de jalon dans le diagramme de Gantt. Vous ne pouvez pas renseigner seulement la date de début.
+- Des __dates de début et de fin__ : Si seule la date de fin est renseignée, la tâche apparaîtra sous forme de jalon dans le diagramme de Gantt. Vous ne pouvez pas renseigner seulement la date de début.
 - Une __progression__ : en pourcentage
-- Une __pièce jointe__ : si le fichier est une image, un aperçu apparaitra au dessus du bouton.
+- Une __pièce jointe__ : si le fichier est une image, un aperçu apparaîtra au-dessus du bouton.
 
 Exemple de tâche :
 
-<!-- user-6 --> 
+<!-- user-6 -->
 <p align="center">
     <img src="images/user-6.png">
 </p>
 
 ----
 
+## Tableau de bord du projet
+
+Le tableau de bord du projet permet d'avoir une idée précise de l'avancement général du projet. Il permet également de voir les prochaines échéances et les tâches en retard du projet.
+
+On peut accéder au tableau de bord en cliquant sur le titre du projet, puis sur `Tableau de bord du projet`.
+
+<!-- dashboard-1 -->
+<p align="center">
+    <img src="images/dashboard-1.png">
+</p>
+
+Les différents indicateurs sont calculés en récupérant les informations de chaque tâche, ainsi ils ne nécessitent pas d’indiquer plus de renseignements en particulier :
+
+- L'avancement moyen des tâches est la moyenne des pourcentages de progression de toutes les tâches
+- La date de fin est la dernière date parmi les dates de fin de toutes les tâches
+- Les prochaines échéances sont les tâches dont la date de fin arrive bientôt
+- Les tâches en retard sont celles qui ne sont pas encore terminées (qui n'ont pas une étiquette `Fait` ou qui n'ont pas une progression à 100%) et dont la date de fin est passée.
+
+<!-- dashboard-2 -->
+<p align="center">
+    <img src="images/dashboard-2.png">
+</p>
+
+On peut faire apparaître plus de détails sur l'avancement et la date de fin de chaque domaine en cliquant sur l'indicateur associé.
+
+<!-- dashboard-3 -->
+<p align="center">
+    <img src="images/dashboard-3.png">
+</p>
+
+S'il n'y a pas assez de données pour pouvoir calculer les différents indicateurs, le tableau de bord le précisera.
+
+<!-- dashboard-4 -->
+<p align="center">
+    <img src="images/dashboard-4.png">
+</p>
+
 ## Administrer un projet
 
-L'accès aux différentes pages du projet s'obtient en cliquant sur le titre du projet, dans la barre de menu :
+L'accès aux différentes pages du projet s'obtient en cliquant sur le titre du projet, dans la barre de menu, puis sur `Configurer le projet` :
 
-<!-- user-7 --> 
+<!-- user-7 -->
 <p align="center">
     <img src="images/user-7.png">
 </p>
 
-Sur la page de configuration d'un projet, vous pouvez le renommer, choisir un thème de couleur, mais surtout ajouter ou supprimer des membres. Saisissez les premières lettres du pseudonymes et cliquez sur ```Ajouter```.
+Sur la page de configuration d'un projet, vous pouvez le renommer, choisir un thème de couleur, mais surtout ajouter ou supprimer des membres. Saisissez les premières lettres du pseudonyme et cliquez sur ```Ajouter```.
 
-<!-- user-8 --> 
+<!-- user-8 -->
 <p align="center">
     <img src="images/user-8.png">
 </p>
 
 > __Astuce__ : Mettre un peu de couleur dans les projets permet de mieux se retrouver sur la page d'accueil et dans le menu des projets.
 
-<!-- user-9 --> 
+<!-- user-9 -->
 <p align="center">
     <img src="images/user-9.png">
 </p>
@@ -95,23 +132,23 @@ Via le menu du projet, vous avez accès au diagramme de Gantt et au calendrier. 
 
 ### Diagramme de Gantt
 
-Il est possible de double-cliquer sur une tâche pour faire apparaitre la fenêtre de détail et d'édition. Vous pouvez aussi déplacer les tâches pour changer leurs dates de début et de fin, ou encore définir des __contraintes de précédences__ en reliant avec la souris les extrémités de deux tâches.
+Il est possible de double-cliquer sur une tâche pour faire apparaître la fenêtre de détail et d'édition. Vous pouvez aussi déplacer les tâches pour changer leurs dates de début et de fin, ou encore définir des __contraintes de précédences__ en reliant avec la souris les extrémités de deux tâches.
 
 Trois filtres sont disponibles pour modifier l'affichage du Gantt :
 - Afficher les tâches de tous les membres du projet, ou seules celles assignées à un membre
 - Afficher seulement les tâches en cours, ainsi que les jalons à venir
 - Modifier l'échelle de temps
 
-<!-- user-10 --> 
+<!-- user-10 -->
 <p align="center">
     <img src="images/user-10.png">
 </p>
 
 ### Calendrier
 
-Ici encore, vous pouvez déplacer, redimmensionner ou afficher la fenêtre de détail d'une tâche. Les jalons sont affichés en bleu foncé et les autres tâches en bleu clair.
+Ici encore, vous pouvez déplacer, redimensionner ou afficher la fenêtre de détail d'une tâche. Les jalons sont affichés en bleu foncé et les autres tâches en bleu clair.
 
-<!-- user-11 --> 
+<!-- user-11 -->
 <p align="center">
     <img src="images/user-11.png">
 </p>
@@ -120,7 +157,7 @@ Ici encore, vous pouvez déplacer, redimmensionner ou afficher la fenêtre de d�
 
 Dans le menu Utilisateur, vous pouvez trouver un diagramme de Gantt regroupant les tâches qui vous sont associées dans tous les projets auxquels vous participez :
 
-<!-- user-12 --> 
+<!-- user-12 -->
 <p align="center">
     <img src="images/user-12.png">
 </p>
@@ -136,21 +173,21 @@ Le menu Messagerie contient :
 
 Pour chaque projet, une discussion est automatiquement créée, regroupant tous ses membres.
 
-<!-- user-13 --> 
+<!-- user-13 -->
 <p align="center">
     <img src="images/user-13.png">
 </p>
 
 La page d'accueil de la messagerie affiche les conversations non lues. Sur la droite, on retrouve les discussions pour chaque projet, les discussions privées et la possibilité de contacter les administrateurs :
 
-<!-- user-15 --> 
+<!-- user-15 -->
 <p align="center">
     <img src="images/user-15.png">
 </p>
 
 Exemple de conversation de groupe :
 
-<!-- user-16 --> 
+<!-- user-16 -->
 <p align="center">
     <img src="images/user-16.png">
 </p>
@@ -161,7 +198,7 @@ Exemple de conversation de groupe :
 
 Vous recevrez parfois des notifications si l'on vous ajoute à un projet, assigne à une tâche, ou si l'on modifie une tâche à laquelle vous êtes associé.
 
-<!-- user-14 --> 
+<!-- user-14 -->
 <p align="center">
     <img src="images/user-14.png">
 </p>
@@ -172,7 +209,7 @@ Vous recevrez parfois des notifications si l'on vous ajoute à un projet, assign
 
 La page de profil permet de modifier son pseudonyme, son adresse e-mail et son avatar. On y trouve aussi la liste de nos projets ainsi que les tâches qui nous sont associées.
 
-<!-- user-17 --> 
+<!-- user-17 -->
 <p align="center">
     <img src="images/user-17.png">
 </p>
