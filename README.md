@@ -4,7 +4,7 @@
 
 [EN] **Warning** : Pilote is a dormant project, no work is planned on it.
 
-[FR] **Attention** : Pilote est projet dormant, aucun travail n'est prévu dessus.
+[FR] **Attention** : Pilote est un projet dormant, aucun travail n'est prévu dessus.
 
 ----
 
